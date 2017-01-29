@@ -1,5 +1,5 @@
 import pygame
-
+import math
 pygame.init()
 
 #Define some colors to use in our game
@@ -12,13 +12,16 @@ BLUE =  (0, 0, 255)
 PI = 3.141592653
 
 # Open a new window and set the window size
+x_window_size = 700
+y_window_size = 500
 
-size = (700, 500)
-screen = pygame.display.set mode(size)
+
+size = (x_window_size, y_window_size)
+screen = pygame.display.set_mode(size)
 
 # Set the window title
 
-pygame.display.set caption("My Super Mega Awesome Pygame")
+pygame.display.set_caption("My Super Mega Awesome Pygame")
 
 # Now let us set up the main program loop
 
@@ -30,22 +33,56 @@ done = False
 
 clock = pygame.time.Clock()
 
+# Initialize game logic variables
+size_grid = 10
+x_pos = x_window_size/2
+y_pos = y_window_size/2
+
+pos_increment = 10
+
 # ------------ Main Program Loop -----------
 while not done:
 	# ---- Main event loop
 	for event in pygame.event.get(): # User did something
 		if event.type == pygame.QUIT: # If user clicked close
+			print("User asked to quit")
 			done = True # Flag as done so we exit this loop
-	# --- Game logic should go here
+		elif event.type == pygame.KEYDOWN:
+			print("User pressed a key.")
+		elif event.type == pygame.KEYUP:
+			print("User let go of a key")
+		elif event.type == pygame.MOUSEBUTTONDOWN:
+			print("User pressed a mouse button")	
 
+	# --- Game logic should go here
+	# Update position variables of the block
+	if x_pos < x_window_size and x_pos > 0:
+		x_pos += pos_increment
+	else:
+		pos_increment *= -1
+		x_pos += pos_increment
 	# Drawing code should go here
 	
 	# First, clear the screen to go white. Don't put other drawing
 	# commmands above this, or they will be erased with this command.
 	screen.fill(WHITE)
-
+	
+	#draw some text
+	font = pygame.font.SysFont('Calibri', 50, True, False)
+	text = font.render("WELCOME TO MY GAME", True, BLACK)
+	screen.blit(text, [50, int((1.0/3)*(y_window_size))])
+	
+	#draw a rectangular grid
+	for i in range(size_grid):
+		for k in range(size_grid):
+			pygame.draw.rect(screen, RED, (x_pos,y_pos,10,10))
+			
 	# --- Go ahead and update the screen with what we've drawn.
 	pygame.display.flip()
 
 	# --- Limit to 60 frames per second.
 	clock.tick(60)
+
+# Properly shutdown the program
+
+pygame.quit()
