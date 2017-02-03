@@ -13,7 +13,7 @@ PI = 3.141592653
 
 # Open a new window and set the window size
 x_window_size = 700
-y_window_size = 500
+y_window_size = 700
 
 
 size = (x_window_size, y_window_size)
@@ -71,8 +71,8 @@ while not done:
 	
 	#draw some text
 	font = pygame.font.SysFont('Calibri', 50, True, False)
-	text = font.render("WELCOME TO MY GAME", True, BLACK)
-	screen.blit(text, [50, int((1.0/3)*(y_window_size))])
+	text = font.render("...do not ask the anwser...", True, BLACK)
+	screen.blit(text, [40, int((1.0/3)*(y_window_size))])
 	
 	#draw a rectangular grid
 	for i in range(size_grid):
