@@ -48,9 +48,11 @@ while not done:
 			print("User asked to quit")
 			done = True # Flag as done so we exit this loop
 		elif event.type == pygame.KEYDOWN:
-			print("User pressed a key.")
+			pos_increment -= 5
+			print("Speed decreased by five units")
 		elif event.type == pygame.KEYUP:
-			print("User let go of a key")
+			pos_increment += 5
+			print("Speed increased by five units")
 		elif event.type == pygame.MOUSEBUTTONDOWN:
 			print("User pressed a mouse button")	
 
