@@ -15,7 +15,6 @@ PI = 3.141592653
 x_window_size = 700
 y_window_size = 700
 
-
 size = (x_window_size, y_window_size)
 screen = pygame.display.set_mode(size)
 
@@ -38,7 +37,13 @@ size_grid = 10
 x_pos = x_window_size/2
 y_pos = y_window_size/2
 
-pos_increment = 10
+x_velocity = 10
+x_velocity_increment = 5
+x_direction_movement = 1
+
+y_velocity = 0
+y_velocity_increment = 5
+y_direction_movement = 1
 
 # ------------ Main Program Loop -----------
 while not done:
@@ -48,21 +53,39 @@ while not done:
 			print("User asked to quit")
 			done = True # Flag as done so we exit this loop
 		elif event.type == pygame.KEYDOWN:
-			pos_increment -= 5
-			print("Speed decreased by five units")
+			if event.key == pygame.K_UP:
+				x_velocity += x_velocity_increment
+				print("X Speed decreased")
+			if event.key == pygame.K_DOWN:
+				x_velocity -= x_velocity_increment
+				print("X Speed increased")
+			if event.key == pygame.K_LEFT:
+				y_velocity += y_velocity_increment
+				print("Y Speed increased")
+			if event.key == pygame.K_RIGHT:
+				y_velocity -= y_velocity_increment
+				print("Y Speed decreased")
+				
 		elif event.type == pygame.KEYUP:
-			pos_increment += 5
-			print("Speed increased by five units")
+			#Placeholder?
+			"pass"
 		elif event.type == pygame.MOUSEBUTTONDOWN:
 			print("User pressed a mouse button")	
 
 	# --- Game logic should go here
 	# Update position variables of the block
 	if x_pos < x_window_size and x_pos > 0:
-		x_pos += pos_increment
+		x_pos += x_velocity*x_direction_movement
 	else:
-		pos_increment *= -1
-		x_pos += pos_increment
+		x_direction_movement *= -1
+		x_pos += x_velocity*x_direction_movement
+	
+	if y_pos < y_window_size and y_pos > 0:
+		y_pos += y_velocity*y_direction_movement
+	else:
+		y_direction_movement *= -1
+		y_pos += y_velocity*y_direction_movement
+
 	# Drawing code should go here
 	
 	# First, clear the screen to go white. Don't put other drawing
