@@ -53,24 +53,24 @@ while not done:
 			print("User asked to quit")
 			done = True # Flag as done so we exit this loop
 		elif event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_UP:
+			if event.key == pygame.K_RIGHT:
 				x_velocity += x_velocity_increment
 				print("X Speed decreased")
-			if event.key == pygame.K_DOWN:
+			if event.key == pygame.K_LEFT:
 				x_velocity -= x_velocity_increment
 				print("X Speed increased")
-			if event.key == pygame.K_LEFT:
+			if event.key == pygame.K_DOWN:
 				y_velocity += y_velocity_increment
 				print("Y Speed increased")
-			if event.key == pygame.K_RIGHT:
+			if event.key == pygame.K_UP:
 				y_velocity -= y_velocity_increment
 				print("Y Speed decreased")
-				
+
 		elif event.type == pygame.KEYUP:
 			#Placeholder?
 			"pass"
 		elif event.type == pygame.MOUSEBUTTONDOWN:
-			print("User pressed a mouse button")	
+			print("User pressed a mouse button")
 
 	# --- Game logic should go here
 	# Update position variables of the block
@@ -79,7 +79,7 @@ while not done:
 	else:
 		x_direction_movement *= -1
 		x_pos += x_velocity*x_direction_movement
-	
+
 	if y_pos < y_window_size and y_pos > 0:
 		y_pos += y_velocity*y_direction_movement
 	else:
@@ -87,21 +87,21 @@ while not done:
 		y_pos += y_velocity*y_direction_movement
 
 	# Drawing code should go here
-	
+
 	# First, clear the screen to go white. Don't put other drawing
 	# commmands above this, or they will be erased with this command.
 	screen.fill(WHITE)
-	
+
 	#draw some text
 	font = pygame.font.SysFont('Calibri', 50, True, False)
 	text = font.render("...do not ask the anwser...", True, BLACK)
 	screen.blit(text, [40, int((1.0/3)*(y_window_size))])
-	
+
 	#draw a rectangular grid
 	for i in range(size_grid):
 		for k in range(size_grid):
-			pygame.draw.rect(screen, RED, (x_pos,y_pos,10,10))
-			
+			pygame.draw.rect(screen, BLACK, (x_pos,y_pos,10,10))
+
 	# --- Go ahead and update the screen with what we've drawn.
 	pygame.display.flip()
 
