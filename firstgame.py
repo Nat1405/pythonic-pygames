@@ -1,5 +1,9 @@
 import pygame
 import math
+
+#Import my classes for the game
+import mymodule
+
 pygame.init()
 
 #Define some colors to use in our game
@@ -44,6 +48,11 @@ x_direction_movement = 1
 y_velocity = 0
 y_velocity_increment = 5
 y_direction_movement = 1
+
+#Create new box objects
+box_2 = mymodule.Box(10,10,screen)
+
+
 
 # ------------ Main Program Loop -----------
 while not done:
@@ -94,13 +103,18 @@ while not done:
 
 	#draw some text
 	font = pygame.font.SysFont('Calibri', 50, True, False)
-	text = font.render("...do not ask the anwser...", True, BLACK)
+	text = font.render(mymodule.game_title, True, BLACK)
 	screen.blit(text, [40, int((1.0/3)*(y_window_size))])
 
 	#draw a rectangular grid
 	for i in range(size_grid):
 		for k in range(size_grid):
 			pygame.draw.rect(screen, BLACK, (x_pos,y_pos,10,10))
+
+	#Update the instance variables of the box_2 object
+
+	box_2.draw(size_grid)
+	box_2.move(x_velocity)
 
 	# --- Go ahead and update the screen with what we've drawn.
 	pygame.display.flip()
