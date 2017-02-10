@@ -50,7 +50,7 @@ y_velocity_increment = 5
 y_direction_movement = 1
 
 #Create new box objects
-box_2 = mymodule.Box(10,10,screen)
+box_2 = mymodule.Box(x_pos,y_pos,screen)
 
 
 
@@ -106,15 +106,10 @@ while not done:
 	text = font.render(mymodule.game_title, True, BLACK)
 	screen.blit(text, [40, int((1.0/3)*(y_window_size))])
 
-	#draw a rectangular grid
-	for i in range(size_grid):
-		for k in range(size_grid):
-			pygame.draw.rect(screen, BLACK, (x_pos,y_pos,10,10))
-
 	#Update the instance variables of the box_2 object
 
 	box_2.draw(size_grid)
-	box_2.move(x_velocity)
+	box_2.move(x_velocity, x_direction_movement, y_velocity, y_direction_movement)
 
 	# --- Go ahead and update the screen with what we've drawn.
 	pygame.display.flip()
