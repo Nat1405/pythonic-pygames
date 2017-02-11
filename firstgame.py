@@ -38,6 +38,7 @@ clock = pygame.time.Clock()
 
 # Initialize game logic variables
 size_grid = 10
+
 x_pos = x_window_size/2
 y_pos = y_window_size/2
 
@@ -50,13 +51,15 @@ y_velocity_increment = 5
 y_direction_movement = 1
 
 #Create new box objects
-box_2 = mymodule.Box(x_pos,y_pos,screen)
+box_2 = mymodule.Box(x_pos,y_pos,screen, x_window_size, y_window_size)
 
 
 
 # ------------ Main Program Loop -----------
 while not done:
 	# ---- Main event loop
+
+	# Migrate this code into the Box() object
 	for event in pygame.event.get(): # User did something
 		if event.type == pygame.QUIT: # If user clicked close
 			print("User asked to quit")
@@ -109,8 +112,7 @@ while not done:
 	#Update the instance variables of the box_2 object
 
 	box_2.draw(size_grid)
-	box_2.move(x_velocity, x_direction_movement, y_velocity, y_direction_movement)
-
+	box_2.move()
 	# --- Go ahead and update the screen with what we've drawn.
 	pygame.display.flip()
 
