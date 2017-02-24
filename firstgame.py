@@ -24,7 +24,7 @@ screen = pygame.display.set_mode(size)
 
 # Set the window title
 
-pygame.display.set_caption("My Super Mega Awesome Pygame")
+pygame.display.set_caption("A pretty cool python game!")
 
 # Now let us set up the main program loop
 
@@ -65,53 +65,57 @@ while not done:
 			print("User asked to quit")
 			done = True # Flag as done so we exit this loop
 		elif event.type == pygame.KEYDOWN:
+			# Check for key lefts, rights, etc
 			if event.key == pygame.K_RIGHT:
-				x_velocity += x_velocity_increment
-				print("X Speed decreased")
+				box_2.accelerate_x();
 			if event.key == pygame.K_LEFT:
-				x_velocity -= x_velocity_increment
-				print("X Speed increased")
+				box_2.deccelerate_x();
 			if event.key == pygame.K_DOWN:
-				y_velocity += y_velocity_increment
-				print("Y Speed increased")
+				box_2.accelerate_y();
 			if event.key == pygame.K_UP:
-				y_velocity -= y_velocity_increment
-				print("Y Speed decreased")
+				box_2.deccelerate_y();
+			# Check for integers. This controls acceleration increment.
+			if event.key == pygame.K_0:
+				x_velocity_increment = 0
+			if event.key == pygame.K_1:
+				x_velocity_increment = 1
+			if event.key == pygame.K_2:
+				x_velocity_increment = 2
+			if event.key == pygame.K_3:
+				x_velocity_increment = 5
+			if event.key == pygame.K_4:
+				x_velocity_increment = 10
+			box_2.set_x_increment(x_velocity_increment)
+			# Check from 6 till 8 for y velocities
+			if event.key == pygame.K_6:
+				y_velocity_increment = 0
+			if event.key == pygame.K_7:
+				y_velocity_increment = 1
+			if event.key == pygame.K_8:
+				y_velocity_increment = 2
+			if event.key == pygame.K_9:
+				y_velocity_increment = 5
+			box_2.set_y_increment(y_velocity_increment)
 
-		elif event.type == pygame.KEYUP:
-			#Placeholder?
-			"pass"
 		elif event.type == pygame.MOUSEBUTTONDOWN:
 			print("User pressed a mouse button")
 
 	# --- Game logic should go here
-	# Update position variables of the block
-	if x_pos < x_window_size and x_pos > 0:
-		x_pos += x_velocity*x_direction_movement
-	else:
-		x_direction_movement *= -1
-		x_pos += x_velocity*x_direction_movement
-
-	if y_pos < y_window_size and y_pos > 0:
-		y_pos += y_velocity*y_direction_movement
-	else:
-		y_direction_movement *= -1
-		y_pos += y_velocity*y_direction_movement
 
 	# Drawing code should go here
 
 	# First, clear the screen to go white. Don't put other drawing
 	# commmands above this, or they will be erased with this command.
-	screen.fill(WHITE)
+	screen.fill(BLACK)
 
-	#draw some text
+	# Draw a title INSIDE the game window
 	font = pygame.font.SysFont('Calibri', 50, True, False)
-	text = font.render(mymodule.game_title, True, BLACK)
+	text = font.render(mymodule.game_title, True, WHITE)
 	screen.blit(text, [40, int((1.0/3)*(y_window_size))])
 
 	#Update the instance variables of the box_2 object
 
-	box_2.draw(size_grid)
+	box_2.draw(size_grid, WHITE)
 	box_2.move()
 	# --- Go ahead and update the screen with what we've drawn.
 	pygame.display.flip()
