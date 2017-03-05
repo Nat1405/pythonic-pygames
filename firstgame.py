@@ -43,15 +43,15 @@ x_pos = x_window_size/2
 y_pos = y_window_size/2
 
 x_velocity = 10
-x_velocity_increment = 5
+x_acceleration = 5
 x_direction_movement = 1
 
 y_velocity = 0
-y_velocity_increment = 5
+y_acceleration = 5
 y_direction_movement = 1
 
 #Create new box objects
-box_2 = mymodule.Box(x_pos,y_pos,screen, x_window_size, y_window_size)
+lander = mymodule.Box(x_pos,y_pos,screen, x_window_size, y_window_size)
 
 
 
@@ -67,35 +67,35 @@ while not done:
 		elif event.type == pygame.KEYDOWN:
 			# Check for key lefts, rights, etc
 			if event.key == pygame.K_RIGHT:
-				box_2.accelerate_x();
+				lander.accelerate_x();
 			if event.key == pygame.K_LEFT:
-				box_2.deccelerate_x();
+				lander.deccelerate_x();
 			if event.key == pygame.K_DOWN:
-				box_2.accelerate_y();
+				lander.accelerate_y();
 			if event.key == pygame.K_UP:
-				box_2.deccelerate_y();
+				lander.deccelerate_y();
 			# Check for integers. This controls acceleration increment.
 			if event.key == pygame.K_0:
-				x_velocity_increment = 0
+				x_acceleration = 0
 			if event.key == pygame.K_1:
-				x_velocity_increment = 1
+				x_acceleration = 1
 			if event.key == pygame.K_2:
-				x_velocity_increment = 2
+				x_acceleration = 2
 			if event.key == pygame.K_3:
-				x_velocity_increment = 5
+				x_acceleration = 5
 			if event.key == pygame.K_4:
-				x_velocity_increment = 10
-			box_2.set_x_increment(x_velocity_increment)
+				x_acceleration = 10
+			lander.set_x_increment(x_acceleration)
 			# Check from 6 till 8 for y velocities
 			if event.key == pygame.K_6:
-				y_velocity_increment = 0
+				y_acceleration = 0
 			if event.key == pygame.K_7:
-				y_velocity_increment = 1
+				y_acceleration = 1
 			if event.key == pygame.K_8:
-				y_velocity_increment = 2
+				y_acceleration = 2
 			if event.key == pygame.K_9:
-				y_velocity_increment = 5
-			box_2.set_y_increment(y_velocity_increment)
+				y_acceleration = 5
+			lander.set_y_increment(y_acceleration)
 
 		elif event.type == pygame.MOUSEBUTTONDOWN:
 			print("User pressed a mouse button")
@@ -113,10 +113,10 @@ while not done:
 	text = font.render(mymodule.game_title, True, WHITE)
 	screen.blit(text, [40, int((1.0/3)*(y_window_size))])
 
-	#Update the instance variables of the box_2 object
+	#Update the instance variables of the lander object
 
-	box_2.draw(size_grid, WHITE)
-	box_2.move()
+	lander.draw(size_grid, WHITE)
+	lander.move()
 	# --- Go ahead and update the screen with what we've drawn.
 	pygame.display.flip()
 
