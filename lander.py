@@ -86,6 +86,10 @@ while not done:
 			if event.key == pygame.K_DOWN:
 				engine_firing_flag = True
 				print("Started firing")
+			if event.key == pygame.K_1:
+				lander.rot_center(0.5);
+			if event.key == pygame.K_2:
+				lander.rot_center(-0.5);	
 		elif event.type == pygame.KEYUP:
 			if event.key == pygame.K_DOWN:
 				engine_firing_flag = False
@@ -104,18 +108,12 @@ while not done:
 
 	# Draw telemetry data inside the game window
 	font = pygame.font.SysFont('Calibri', telemetry_font_size, True, False)
-	x_pos_text = font.render("x position: " + str(lander.x_pos), True, WHITE)
-	y_pos_text = font.render("y position: " + str(lander.y_pos), True, WHITE)
 	x_velocity_text = font.render("x velocity: " + str(lander.x_velocity), True, WHITE)
-	y_velocity_text = font.render("y velocity: " + str(lander.y_velocity), True, WHITE)
+	y_velocity_text = font.render("y velocity: " + str(-1*lander.y_velocity), True, WHITE)
 
-	x_pos_text_rect = x_pos_text.get_rect(center=(x_window_size*4/5, y_window_size/5))
-	y_pos_text_rect = y_pos_text.get_rect(center=(x_window_size*4/5, y_window_size/5 + 1*telemetry_font_size))
-	x_velocity_text_rect = x_velocity_text.get_rect(center=(x_window_size*4/5, y_window_size/5 + 2*telemetry_font_size))
-	y_velocity_text_rect = y_velocity_text.get_rect(center=(x_window_size*4/5, y_window_size/5 + 3*telemetry_font_size))
+	x_velocity_text_rect = x_velocity_text.get_rect(center=(x_window_size*4/5, y_window_size/5))
+	y_velocity_text_rect = y_velocity_text.get_rect(center=(x_window_size*4/5, y_window_size/5 + telemetry_font_size))
 
-	screen.blit(x_pos_text, x_pos_text_rect)
-	screen.blit(y_pos_text, y_pos_text_rect)
 	screen.blit(x_velocity_text, x_velocity_text_rect)
 	screen.blit(y_velocity_text, y_velocity_text_rect)
 
@@ -136,7 +134,7 @@ while not done:
 	pygame.display.flip()
 
 	# --- Limit to 60 frames per second.
-	clock.tick(60)
+	clock.tick(15)
 
 # Properly shutdown the program
 

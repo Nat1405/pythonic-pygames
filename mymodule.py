@@ -25,7 +25,7 @@ class Lander(object):
 
         # Initialize the image representation of the object
         self.lander_image = pygame.image.load("rocket_cartoon.png")
-        self.lander_image = pygame.transform.scale(self.lander_image, (20, 20))
+        self.lander_image = pygame.transform.scale(self.lander_image, (50, 50))
         self.imagerect = self.lander_image.get_rect()
 
         # Intialize the endgame flags
@@ -58,8 +58,8 @@ class Lander(object):
 
         if engine_firing_flag:
             self.y_velocity += self.y_acceleration + self.engine_acceleration
-        else:
-            self.y_velocity += self.y_acceleration
+        #else:
+            #self.y_velocity += self.y_acceleration
 
     # Call these methods to speed up or slow down the object
     def accelerate_x(self):
@@ -78,3 +78,8 @@ class Lander(object):
         self.x_acceleration = x_acceleration
     def set_y_increment(self, y_acceleration):
         self.y_acceleration = y_acceleration
+
+    def rot_center(self, angle):
+        '''rotate an image while keeping its center'''
+        self.lander_image = pygame.transform.rotate(self.lander_image, angle)
+        self.imagerect = self.lander_image.get_rect(center=self.imagerect.center)
