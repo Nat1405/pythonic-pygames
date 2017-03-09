@@ -58,8 +58,8 @@ class Lander(object):
 
         if engine_firing_flag:
             self.y_velocity += self.y_acceleration + self.engine_acceleration
-        #else:
-            #self.y_velocity += self.y_acceleration
+        else:
+            self.y_velocity += self.y_acceleration
 
     # Call these methods to speed up or slow down the object
     def accelerate_x(self):
