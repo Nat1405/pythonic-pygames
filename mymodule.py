@@ -28,6 +28,8 @@ class Lander(object):
         self.lander_image = pygame.transform.scale(self.lander_image, (50, 50))
         self.imagerect = self.lander_image.get_rect()
 
+        self.temp_image = self.lander_image
+
         # Intialize the endgame flags
 
         self.end_game_flag = True;
@@ -35,7 +37,7 @@ class Lander(object):
 
     #Method to draw object
     def draw(self, color):
-    	self.screen.blit(self.lander_image, (self.x_pos, self.y_pos))
+    	self.screen.blit(self.temp_image, (self.x_pos, self.y_pos))
 
     #Method to move object around
     def move(self, engine_firing_flag):
@@ -58,8 +60,8 @@ class Lander(object):
 
         if engine_firing_flag:
             self.y_velocity += self.y_acceleration + self.engine_acceleration
-        else:
-            self.y_velocity += self.y_acceleration
+        #else:
+        #    self.y_velocity += self.y_acceleration
 
     # Call these methods to speed up or slow down the object
     def accelerate_x(self):
@@ -81,5 +83,5 @@ class Lander(object):
 
     def rot_center(self, angle):
         '''rotate an image while keeping its center'''
-        self.lander_image = pygame.transform.rotate(self.lander_image, angle)
-        self.imagerect = self.lander_image.get_rect(center=self.imagerect.center)
+        self.temp_image = pygame.transform.rotate(self.lander_image, angle)
+        self.imagerect = self.temp_image.get_rect(center=self.imagerect.center)

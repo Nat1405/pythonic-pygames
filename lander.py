@@ -87,9 +87,9 @@ while not done:
 				engine_firing_flag = True
 				print("Started firing")
 			if event.key == pygame.K_1:
-				lander.rot_center(0.5);
+				lander.rot_center(2);
 			if event.key == pygame.K_2:
-				lander.rot_center(-0.5);	
+				lander.rot_center(-2);	
 		elif event.type == pygame.KEYUP:
 			if event.key == pygame.K_DOWN:
 				engine_firing_flag = False
