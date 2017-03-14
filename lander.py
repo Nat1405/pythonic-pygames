@@ -42,7 +42,7 @@ clock = pygame.time.Clock()
 
 # Initialize game logic variables
 
-# Initialize position, velocity and acceleration variables
+# Initialize position, velocity, acceleration and rotation variables
 x_pos = 5
 y_pos = 5
 
@@ -53,6 +53,8 @@ x_acceleration = 1
 y_velocity = 0
 y_acceleration = 1
 
+rotation = 0
+
 
 # Initialize engine variables
 
@@ -62,6 +64,9 @@ engine_acceleration = -1*y_acceleration
 
 engine_firing_flag = False
 end_game_flag = False
+
+rotate_left_flag = False
+rotate_right_flag = False
 
 #Create new lunar lander object
 lander = mymodule.Lander(x_pos,y_pos, x_velocity, y_velocity, x_acceleration, y_acceleration, engine_acceleration, screen, x_window_size, y_window_size)
@@ -87,15 +92,28 @@ while not done:
 				engine_firing_flag = True
 				print("Started firing")
 			if event.key == pygame.K_1:
-				lander.rot_center(2);
+				rotate_left_flag = True
 			if event.key == pygame.K_2:
-				lander.rot_center(-2);	
+				rotate_right_flag = True
 		elif event.type == pygame.KEYUP:
 			if event.key == pygame.K_DOWN:
 				engine_firing_flag = False
 				print("Stopped firing")
+			if event.key == pygame.K_1:
+				rotate_left_flag = False
+			if event.key == pygame.K_2:
+				rotate_right_flag = False
 
 	# --- Game logic should go here
+
+	# Add rotation of the lander
+
+	if rotate_left_flag:
+		rotation += 2
+	if rotate_right_flag:
+		rotation -= 2
+	lander.rot_center(rotation)
+
 
 	if engine_firing_flag:
 		lander.deccelerate_y()
