@@ -1,6 +1,7 @@
 # This is a simple box object to move around the screen.
 
 import pygame
+import math
 
 class Lander(object):
 
@@ -31,8 +32,6 @@ class Lander(object):
         self.rot_image = self.lander_image
         self.rot_rect = self.imagerect
 
-
-
         # Intialize the endgame flags
 
         self.end_game_flag = True;
@@ -60,6 +59,8 @@ class Lander(object):
         # Check to see how the rocket is accelerating.
         # If engine is firing, velocity += y_acceleration - engine_acceleration
         # else velocity += y_acceleration because the lander is just falling.
+
+        # V0.1 Build: sines and cosines used to add a variable thrust vector.
 
         if engine_firing_flag:
             self.y_velocity += self.y_acceleration + self.engine_acceleration

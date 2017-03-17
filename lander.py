@@ -68,6 +68,10 @@ end_game_flag = False
 rotate_left_flag = False
 rotate_right_flag = False
 
+# Some math functions that we'll need later on
+#
+# math.cos(math.radians(angle_in_degrees))
+
 #Create new lunar lander object
 lander = mymodule.Lander(x_pos,y_pos, x_velocity, y_velocity, x_acceleration, y_acceleration, engine_acceleration, screen, x_window_size, y_window_size)
 
@@ -84,24 +88,20 @@ while not done:
 			done = True # Flag as done so we exit this loop
 		elif event.type == pygame.KEYDOWN:
 			# Check for key lefts, rights, etc
-			if event.key == pygame.K_RIGHT:
-				lander.accelerate_x();
 			if event.key == pygame.K_LEFT:
-				lander.deccelerate_x();
+				rotate_left_flag = True
+			if event.key == pygame.K_RIGHT:
+				rotate_right_flag = True
 			if event.key == pygame.K_DOWN:
 				engine_firing_flag = True
 				print("Started firing")
-			if event.key == pygame.K_1:
-				rotate_left_flag = True
-			if event.key == pygame.K_2:
-				rotate_right_flag = True
 		elif event.type == pygame.KEYUP:
 			if event.key == pygame.K_DOWN:
 				engine_firing_flag = False
 				print("Stopped firing")
-			if event.key == pygame.K_1:
+			if event.key == pygame.K_LEFT:
 				rotate_left_flag = False
-			if event.key == pygame.K_2:
+			if event.key == pygame.K_RIGHT:
 				rotate_right_flag = False
 
 	# --- Game logic should go here
