@@ -29,6 +29,8 @@ class Lander(object):
         self.lander_image = pygame.transform.scale(self.lander_image, (50, 50))
         self.imagerect = self.lander_image.get_rect()
 
+        self.rotation = 0
+
         self.rot_image = self.lander_image
         self.rot_rect = self.imagerect
 
@@ -56,6 +58,11 @@ class Lander(object):
         self.x_pos += self.x_velocity
         self.y_pos += self.y_velocity
 
+
+
+        # Check to see if we are rotating or not
+
+
         # Check to see how the rocket is accelerating.
         # If engine is firing, velocity += y_acceleration - engine_acceleration
         # else velocity += y_acceleration because the lander is just falling.
@@ -63,6 +70,11 @@ class Lander(object):
         # V0.1 Build: sines and cosines used to add a variable thrust vector.
 
         if engine_firing_flag:
+            # We need to split the engine acceleration between x and y
+
+            self.x_velocity += self.engine_acceleration*math.sin(math.radians(self.rotation))
+            self.y_velocity += self.y_acceleration + self.engine_acceleration*math.cos(math.radians(self.rotation))
+
             self.y_velocity += self.y_acceleration + self.engine_acceleration
         else:
             self.y_velocity += self.y_acceleration
@@ -88,5 +100,6 @@ class Lander(object):
     def rot_center(self, angle):
 
         """rotate an image while keeping its center"""
+        self.rotation = angle
         self.rot_image = pygame.transform.rotate(self.lander_image, angle)
         self.rot_rect = self.rot_image.get_rect(center=self.imagerect.center)
