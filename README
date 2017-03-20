@@ -1,7 +1,15 @@
 Hello! This a game based on a pygame game template demonstrated at [programarcadegames.com](http://programarcadegames.com/index.php?chapter=introduction_to_graphics).
 
-So far the block moves around with input from the user.
+This is a clone of the popular arcade game lunar-lander.
 
-I am currently updating an object-oriented implementation.
+It demonstrates some of pythons OO tools as well as classical mechanics principles.
 
-This project is under construction.
+To do:
+
+- Engine firing graphics
+- Add terrain
+- Collisions
+- Multiplayer
+- Optimization rewrite
+- Autopilot
+- Close-in Docking screen

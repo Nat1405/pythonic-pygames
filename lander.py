@@ -117,7 +117,7 @@ while not done:
 
 	# Drawing code should go here
 
-	# First, clear the screen to go white. Don't put other drawing
+	# First, clear the screen to go black. Don't put other drawing
 	# commmands above this, or they will be erased with this command.
 	screen.fill(BLACK)
 
