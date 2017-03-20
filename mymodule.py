@@ -88,9 +88,6 @@ class Lander(object):
     def deccelerate_x(self):
         '''Setter to accelerate or decellerate object'''
         self.x_velocity -= self.x_acceleration
-    def deccelerate_y(self):
-        '''Setter to accelerate or decellerate object'''
-        self.y_velocity -= self.y_acceleration
     def set_x_increment(self, x_acceleration):
         self.x_acceleration = x_acceleration
     def set_y_increment(self, y_acceleration):
