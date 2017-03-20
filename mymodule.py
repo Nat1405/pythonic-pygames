@@ -73,9 +73,8 @@ class Lander(object):
             # We need to split the engine acceleration between x and y
 
             self.x_velocity += self.engine_acceleration*math.sin(math.radians(self.rotation))
-            self.y_velocity += self.y_acceleration + self.engine_acceleration*math.cos(math.radians(self.rotation))
+            self.y_velocity += self.engine_acceleration*math.cos(math.radians(self.rotation))
 
-            self.y_velocity += self.y_acceleration + self.engine_acceleration
         else:
             self.y_velocity += self.y_acceleration
 

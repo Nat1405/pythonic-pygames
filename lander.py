@@ -115,8 +115,8 @@ while not done:
 	lander.rot_center(rotation)
 
 
-	if engine_firing_flag:
-		lander.deccelerate_y()
+	#if engine_firing_flag:
+	#	lander.deccelerate_y()
 
 	# Drawing code should go here
 
