@@ -34,6 +34,8 @@ class Lander(object):
         self.rot_image = self.lander_image
         self.rot_rect = self.imagerect
 
+        # Initialize the image representation of the engine exhaust
+
         # Intialize the endgame flags
 
         self.end_game_flag = True;
