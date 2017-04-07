@@ -57,8 +57,6 @@ while not done:
 	# commmands above this, or they will be erased with this command.
 	screen.fill(BLACK)
 
-	# Draw a ball to use as our test object.
-	pygame.draw.circle(screen, RED, (100,100), 10)
 
 	# --- Go ahead and update the screen with what we've drawn.
 	pygame.display.flip()
