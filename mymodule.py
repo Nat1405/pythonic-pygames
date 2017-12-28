@@ -5,7 +5,9 @@ import math
 
 class Lander(object):
 
-    def __init__(self, x_pos, y_pos, x_velocity, y_velocity, x_acceleration, y_acceleration, engine_acceleration, screen, x_window_size, y_window_size):
+    def __init__(self, x_pos, y_pos, x_velocity, y_velocity, x_acceleration, \
+                 y_acceleration, engine_acceleration, screen, x_window_size, y_window_size):
+
         self.x_pos = x_pos
         self.y_pos = y_pos
 
@@ -17,7 +19,7 @@ class Lander(object):
         self.y_acceleration = y_acceleration
         self.y_direction_movement = 1
 
-        self.engine_acceleration = engine_acceleration
+        self.engine_acceleration = engine_accelerationa
 
         # Define the screen and game window variables here
         self.screen = screen
@@ -26,7 +28,7 @@ class Lander(object):
 
         # Initialize the image representation of the object
         self.lander_image = pygame.image.load("rocket_cartoon.png")
-        self.lander_image = pygame.transform.scale(self.lander_image, (50, 50))
+        self.lander_image = pygame.transform.scale(self.lander_image, (20, 20))
         self.imagerect = self.lander_image.get_rect()
 
         self.rotation = 0
